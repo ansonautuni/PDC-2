@@ -14,9 +14,9 @@ import static org.junit.Assert.*;
  *
  * @author Deadl
  */
-public class slotsCalculationsTest {
+public class SlotMachineCalculatorTest {
     
-    public slotsCalculationsTest() {
+    public SlotMachineCalculatorTest() {
     }
     
     @BeforeClass
@@ -43,7 +43,7 @@ public class slotsCalculationsTest {
         System.out.println("fillArray");
         int[] rolls = null;
         int rollMax = 0;
-        slotsCalculations instance = new slotsCalculations();
+        SlotMachineCalculator instance = new SlotMachineCalculator();
         instance.fillArray(rolls, rollMax);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -56,7 +56,7 @@ public class slotsCalculationsTest {
     public void testPrintArray() {
         System.out.println("printArray");
         int[] rolls = null;
-        slotsCalculations instance = new slotsCalculations();
+        SlotMachineCalculator instance = new SlotMachineCalculator();
         String expResult = "";
         String result = instance.printArray(rolls);
         assertEquals(expResult, result);
@@ -72,7 +72,7 @@ public class slotsCalculationsTest {
         System.out.println("countOccurrences");
         int[] arr = null;
         int matching = 0;
-        slotsCalculations instance = new slotsCalculations();
+        SlotMachineCalculator instance = new SlotMachineCalculator();
         int expResult = 0;
         int result = instance.countOccurrences(arr, matching);
         assertEquals(expResult, result);
@@ -91,7 +91,7 @@ public class slotsCalculationsTest {
         int winHistory = 0;
         int lossLifetime = 0;
         int gamesPlayed = 0;
-        slotsCalculations.writeToFile(filepath, balance, winHistory, lossLifetime, gamesPlayed);
+        SlotMachineCalculator.writeToFile(filepath, balance, winHistory, lossLifetime, gamesPlayed);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

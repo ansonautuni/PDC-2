@@ -5,14 +5,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-/**
- *
- * @author Deadl
- */
 public class StatsGUI extends javax.swing.JFrame {
 
     /**
@@ -190,13 +182,13 @@ public class StatsGUI extends javax.swing.JFrame {
                 statsGUI.setVisible(true);
 
                 try {
-                    int balance = readBalance("balance.txt");
+                    int balance = readBalance(Filepath.getBalanceFilepath());
                     statsGUI.updateBalance(balance);
-                    int pointswon = readWinHistory("balance.txt");
+                    int pointswon = readWinHistory(Filepath.getBalanceFilepath());
                     statsGUI.updatePointsWon(pointswon);
-                    int pointslost = readLossHistory("balance.txt");
+                    int pointslost = readLossHistory(Filepath.getBalanceFilepath());
                     statsGUI.updatePointsLost(pointslost);
-                    int gamesplayed = readGamesPlayed("balance.txt");
+                    int gamesplayed = readGamesPlayed(Filepath.getBalanceFilepath());
                     statsGUI.updateGamesPlayed(gamesplayed);
                     statsGUI.updateNetEarnings(pointswon, pointslost);
                 } catch (IOException e) {
@@ -228,7 +220,7 @@ public class StatsGUI extends javax.swing.JFrame {
     }
 
     public static int readBalance(String filepath) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filepath));
+        BufferedReader reader = new BufferedReader(new FileReader(Filepath.getBalanceFilepath()));
         int balance = Integer.parseInt(reader.readLine().trim());
         if (balance == 0) {
             balance = 100;
@@ -239,7 +231,7 @@ public class StatsGUI extends javax.swing.JFrame {
     }
 
     public static int readWinHistory(String filepath) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filepath));
+        BufferedReader reader = new BufferedReader(new FileReader(Filepath.getBalanceFilepath()));
         reader.readLine(); // skip first line
         int winHistory = Integer.parseInt(reader.readLine().trim());
         reader.close();
@@ -247,7 +239,7 @@ public class StatsGUI extends javax.swing.JFrame {
     }
 
     public static int readLossHistory(String filepath) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filepath));
+        BufferedReader reader = new BufferedReader(new FileReader(Filepath.getBalanceFilepath()));
         reader.readLine(); // skip first line
         reader.readLine(); // skip second line
         int lossLifetime = Integer.parseInt(reader.readLine().trim());
@@ -256,7 +248,7 @@ public class StatsGUI extends javax.swing.JFrame {
     }
 
     public static int readGamesPlayed(String filepath) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filepath));
+        BufferedReader reader = new BufferedReader(new FileReader(Filepath.getBalanceFilepath()));
         reader.readLine(); // skip first line
         reader.readLine(); // skip second line
         reader.readLine(); // skip third line
@@ -266,7 +258,7 @@ public class StatsGUI extends javax.swing.JFrame {
     }
 
     public static void resetStats(String filepath) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(Filepath.getBalanceFilepath()));
         writer.write("100\n0\n0\n0");
         writer.close();
     }

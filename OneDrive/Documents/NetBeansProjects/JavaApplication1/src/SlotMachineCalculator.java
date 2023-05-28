@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class slotsCalculations {
+public class SlotMachineCalculator {
 
     public void fillArray(int[] rolls, int rollMax) {
         Random random = new Random();
@@ -45,19 +45,5 @@ public class slotsCalculations {
         }
         //System.out.println("\nThe number " + maxNum + " occurs the most times: " + matching + " times.");
         return matching;
-    }
-
-    public static void writeToFile(String filepath, int balance, int winHistory, int lossLifetime, int gamesPlayed) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath))) {
-            writer.write(String.valueOf(balance));
-            writer.newLine();
-            writer.write(String.valueOf(winHistory));
-            writer.newLine();
-            writer.write(String.valueOf(lossLifetime));
-            writer.newLine();
-            writer.write(String.valueOf(gamesPlayed));
-        } catch (IOException e) {
-            System.out.println("Failed to save balance to file.");
-        }
     }
 }

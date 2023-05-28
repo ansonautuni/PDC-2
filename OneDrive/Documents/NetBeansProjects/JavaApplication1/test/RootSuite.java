@@ -15,7 +15,7 @@ import org.junit.runners.Suite;
  * @author Deadl
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({StatsGUITest.class, projectmainTest.class, CasinoMainGUITest.class, SlotsMachineGUITest.class, slotsMainTest.class, savefileEditorTest.class, slotsCalculationsTest.class})
+@Suite.SuiteClasses({StatsGUITest.class, CasinoMainGUITest.class, SlotsMachineGUITest.class, savefileEditorTest.class, SlotMachineCalculatorTest.class})
 public class RootSuite {
 
     @BeforeClass

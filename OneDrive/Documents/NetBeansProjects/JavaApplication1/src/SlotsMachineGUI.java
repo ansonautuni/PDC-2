@@ -12,7 +12,6 @@ import java.io.IOException;
  * @author Deadl
  */
 public class SlotsMachineGUI extends javax.swing.JFrame {
-
     /**
      * Creates new form SlotsMachineGUI
      */
@@ -155,18 +154,20 @@ public class SlotsMachineGUI extends javax.swing.JFrame {
             int balance = Integer.parseInt(BalanceValue.getText());
 
             if (betAmount <= balance) {
-                slotsCalculations sm = new slotsCalculations();
+                SlotMachineCalculator slotMachine = new SlotMachineCalculator();
+                savefileEditor saveFileEditor = new savefileEditor();
+                SavefileReader savefileReader = new SavefileReader();
                 int winHistory;
                 int lossLifetime;
                 int gamesPlayed;
-                int multiplier = 1;
                 int[] rolls = new int[5];
                 int rollMax = 5;
+                int multiplier =1;
 
                 try {
-                    winHistory = savefileEditor.readWinHistory("balance.txt");
-                    lossLifetime = savefileEditor.readLossHistory("balance.txt");
-                    gamesPlayed = savefileEditor.readGamesPlayed("balance.txt");
+                    winHistory = savefileReader.readWinHistory(Filepath.getBalanceFilepath());
+                    lossLifetime = savefileReader.readLossHistory(Filepath.getBalanceFilepath());
+                    gamesPlayed = savefileReader.readGamesPlayed(Filepath.getBalanceFilepath());
                 } catch (IOException e) {
                     // Handle the IOException here
                     // For example, display an error message in ResultVariable
@@ -174,46 +175,26 @@ public class SlotsMachineGUI extends javax.swing.JFrame {
                     return;
                 }
 
-                sm.fillArray(rolls, rollMax);
-                String arrayString = sm.printArray(rolls);
-                int matching = sm.countOccurrences(rolls, 0);
+                slotMachine.fillArray(rolls, rollMax);
+                String arrayString = slotMachine.printArray(rolls);
+                int matching = slotMachine.countOccurrences(rolls, 0);
                 String resultString = "Roll: " + arrayString + "<br>Matching numbers: " + matching;
                 ResultVariable.setText("<html>" + resultString + "</html>");
 
-                switch (matching) {
-                    case 5:
-                        multiplier = 10;
-                        balance += betAmount * multiplier;
-                        gamesPlayed++;
-                        ResultVariable.setText("<html>" + resultString + "<br>You win " + multiplier + "x!</html>");
-                        sm.writeToFile("balance.txt", balance, winHistory + (betAmount * multiplier), lossLifetime + betAmount, gamesPlayed);
-                        break;
-
-                    case 4:
-                        multiplier = 5;
-                        balance += betAmount * multiplier;
-                        gamesPlayed++;
-                        ResultVariable.setText("<html>" + resultString + "<br>You win " + multiplier + "x!</html>");
-                        sm.writeToFile("balance.txt", balance, winHistory + (betAmount * multiplier), lossLifetime + betAmount, gamesPlayed);
-                        break;
-
-                    case 3:
-                        multiplier = 2;
-                        balance += betAmount * multiplier;
-                        gamesPlayed++;
-                        ResultVariable.setText("<html>" + resultString + "<br>You win " + multiplier + "x!</html>");
-                        sm.writeToFile("balance.txt", balance, winHistory + (betAmount * multiplier), lossLifetime + betAmount, gamesPlayed);
-                        break;
-
-                    default:
-                        balance -= betAmount;
-                        gamesPlayed++;
-                        ResultVariable.setText("<html>" + resultString + "<br>You lost!</html>");
-                        sm.writeToFile("balance.txt", balance, winHistory + (betAmount * multiplier), lossLifetime + betAmount, gamesPlayed);
-                        break;
+                balance = PayoutCalculator.calculatePayout(matching, betAmount, balance, multiplier);
+                gamesPlayed++;
+                if(multiplier !=0)
+                {
+                    winHistory += balance;
+                }
+                else
+                {
+                    lossLifetime-= balance;
                 }
 
-                // Update the balance value on the GUI
+                savefileEditor.writeToFile(Filepath.getBalanceFilepath(), balance, winHistory + (betAmount * multiplier), lossLifetime + betAmount, gamesPlayed);
+
+                // Update the balance value of the GUI
                 updateBalance(balance);
             } else {
                 ResultVariable.setText("<html><font color='red'>Bet amount invalid, try again</font></html>");
@@ -280,7 +261,7 @@ public class SlotsMachineGUI extends javax.swing.JFrame {
     }
 
     public static int readBalance(String filepath) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("balance.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(Filepath.getBalanceFilepath()));
         int balance = Integer.parseInt(reader.readLine().trim());
         if (balance == 0) {
             balance = 100;
