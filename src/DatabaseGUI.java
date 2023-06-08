@@ -6,19 +6,14 @@ import javax.swing.table.TableColumn;
 
 public class DatabaseGUI extends JFrame {
 
-    static final String URL = "jdbc:derby:savefiledb";
-    static final String USERNAME = "anson";
-    static final String PASSWORD = "anson";
-
     private JTable table;
-    private JButton addButton;
-    private JButton clearButton;
-    private JButton returnButton;
+    private final JButton addButton;
+    private final JButton clearButton;
+    private final JButton returnButton;
     private JTextField activeSaveField;
-    private JButton updateSaveButton;
+    private final JButton updateSaveButton;
 
     public static int nextId = 1; // Next ID for the new entry
-    public static Integer activeSave = 1; // Active save ID
 
     public DatabaseGUI() {
         setTitle("Database Entries");
@@ -49,7 +44,7 @@ public class DatabaseGUI extends JFrame {
         getContentPane().add(inputPanel, BorderLayout.SOUTH);
 
         // Fetch and display data
-        DatabaseGUIMethods.fetchEntries(table);
+        Database.fetchEntries(table);
         
         // Adjust column widths
         TableColumn idColumn = table.getColumnModel().getColumn(0);
@@ -61,7 +56,7 @@ public class DatabaseGUI extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DatabaseGUIMethods.addEntry(nextId, table);
+                DatabaseWriter.addEntry(nextId, table);
                 nextId++;
             }
         });
@@ -69,14 +64,14 @@ public class DatabaseGUI extends JFrame {
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DatabaseGUIMethods.clearDatabase(table);
+                DatabaseWriter.clearDatabase(table);
             }
         });
 
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DatabaseGUIMethods.returnToMainMenu();
+                Database.returnToMainMenu();
                 dispose();
             }
         });
@@ -84,28 +79,13 @@ public class DatabaseGUI extends JFrame {
         updateSaveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DatabaseGUIMethods.updateActiveSave(activeSaveField);
+                Database.updateActiveSave(activeSaveField);
             }
         });
 
         setVisible(true);
     }
 
-    public static Integer getActiveSave() {
-        return activeSave;
-    }
-
-    public static String getURL() {
-        return URL;
-    }
-
-    public static String getUsername() {
-        return USERNAME;
-    }
-
-    public static String getPassword() {
-        return PASSWORD;
-    }
     
     public JTable getTable() {
         return table;
@@ -114,12 +94,12 @@ public class DatabaseGUI extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             DatabaseGUI databaseGUI = new DatabaseGUI();
-            if (databaseGUI.activeSave == null) {
+            if (Database.activeSave == null) {
                 String id = JOptionPane.showInputDialog(databaseGUI, "Enter an ID to make it active:");
                 if (id != null) {
                     try {
-                        databaseGUI.activeSave = Integer.parseInt(id);
-                        JOptionPane.showMessageDialog(databaseGUI, "Active save set to ID: " + databaseGUI.activeSave);
+                        Database.activeSave = Integer.parseInt(id);
+                        JOptionPane.showMessageDialog(databaseGUI, "Active save set to ID: " + Database.activeSave);
                     } catch (NumberFormatException e) {
                         JOptionPane.showMessageDialog(databaseGUI, "Invalid ID.");
                     }

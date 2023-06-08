@@ -140,7 +140,7 @@ public class SlotsMachineGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_BetAmountTextFieldActionPerformed
 
     private void returntomainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returntomainActionPerformed
-        CasinoMainGUI cmgui = new CasinoMainGUI();
+        CasinoGUI cmgui = new CasinoGUI();
         cmgui.setVisible(true);
         dispose();
     }//GEN-LAST:event_returntomainActionPerformed

@@ -77,7 +77,6 @@ public class SlotMachine extends Game {
                 } catch (Exception e) {
                     String resultString = "<html><font color='red'>Error: " + e.getMessage() + "</font></html>";
                     slotmachinegui.updateResultText(resultString);
-                    //slotmachinegui.ResultVariable.setText("<html><font color='red'>Error: " + e.getMessage() + "</font></html>");
                     return;
                 }
 
@@ -86,7 +85,6 @@ public class SlotMachine extends Game {
                 int matching = slotMachine.countOccurrences(rolls, 0);
                 String resultString = "Roll: " + arrayString + "<br>Matching numbers: " + matching;
                 slotmachinegui.updateResultText(resultString);
-                //ResultVariable.setText("<html>" + resultString + "</html>");
 
                 balance = Game.calculatePayout(matching, betAmount, balance, multiplier);
                 gamesPlayed++;
@@ -96,24 +94,21 @@ public class SlotMachine extends Game {
                     lossLifetime -= balance;
                 }
 
-                DatabaseWriter.updateBalance(DatabaseGUI.getActiveSave(), balance);
-                DatabaseWriter.updatePointsWon(DatabaseGUI.getActiveSave(), winHistory + (betAmount * multiplier));
-                DatabaseWriter.updatePointsLost(DatabaseGUI.getActiveSave(), lossLifetime + betAmount);
-                DatabaseWriter.increaseGamesPlayed(DatabaseGUI.getActiveSave());
+                DatabaseWriter.updateBalance(Database.getActiveSave(), balance);
+                DatabaseWriter.updatePointsWon(Database.getActiveSave(), winHistory + (betAmount * multiplier));
+                DatabaseWriter.updatePointsLost(Database.getActiveSave(), lossLifetime + betAmount);
+                DatabaseWriter.increaseGamesPlayed(Database.getActiveSave());
 
                 // Update the balance value of the GUI
                 balance = DatabaseReader.readBalance();
                 slotmachinegui.updateBalanceValue(balance);
-                //BalanceValue.setText(Integer.toString(balance));
             } else {
                 String resultString = "<html><font color='red'>Bet amount invalid, try again</font></html>";
                 slotmachinegui.updateResultText(resultString);
-                //ResultVariable.setText("<html><font color='red'>Bet amount invalid, try again</font></html>");
             }
         } catch (NumberFormatException e) {
             String resultString = "<html><font color='red'>Invalid input, try again</font></html>";
             slotmachinegui.updateResultText(resultString);
-            //ResultVariable.setText("<html><font color='red'>Invalid input, try again</font></html>");
         }
     }
 }

@@ -1,9 +1,6 @@
 
 public class StatsGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form StatsGUI
-     */
     public StatsGUI() {
         initComponents();
     }
@@ -142,13 +139,13 @@ public class StatsGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ResetStatsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetStatsButtonActionPerformed
-        int activeSave = DatabaseGUI.getActiveSave();
+        int activeSave = Database.getActiveSave();
         DatabaseWriter.resetStats(activeSave);
         updateMenu(); // Update the values of the existing instance
     }//GEN-LAST:event_ResetStatsButtonActionPerformed
 
     private void ReturnToMainButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnToMainButtonActionPerformed
-        CasinoMainGUI cmgui = new CasinoMainGUI();
+        CasinoGUI cmgui = new CasinoGUI();
         cmgui.setVisible(true);
         dispose();
     }//GEN-LAST:event_ReturnToMainButtonActionPerformed
