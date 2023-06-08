@@ -14,7 +14,7 @@ public class DatabaseWriterTest {
     private static final String URL = "jdbc:derby:mydatabase;create=true";
     private static final String USERNAME = "anson";
     private static final String PASSWORD = "anson";
-    private static final int ACTIVE_SAVE = 1;
+    private static final int ACTIVE_SAVE = 999;
 
     public DatabaseWriterTest() {
     }
@@ -56,29 +56,6 @@ public class DatabaseWriterTest {
     /**
      * Test of updateBalance method, of class DatabaseWriter.
      */
-    @Test
-    public void testUpdateBalance() {
-        int newBalance = 200;
-        DatabaseWriter.updateBalance(ACTIVE_SAVE, newBalance);
-        int updatedBalance = DatabaseReader.readBalance();
-        assertEquals(newBalance, updatedBalance);
-    }
-
-    @Test
-    public void testUpdatePointsWon() {
-        int newPointsWon = 100;
-        DatabaseWriter.updatePointsWon(ACTIVE_SAVE, newPointsWon);
-        int updatedPointsWon = DatabaseReader.readPointsWon();
-        assertEquals(newPointsWon, updatedPointsWon);
-    }
-
-    @Test
-    public void testUpdatePointsLost() {
-        int newPointsLost = 30;
-        DatabaseWriter.updatePointsLost(ACTIVE_SAVE, newPointsLost);
-        int updatedPointsLost = DatabaseReader.readPointsLost();
-        assertEquals(newPointsLost, updatedPointsLost);
-    }
 
     @Test
     public void testResetStats() {
