@@ -6,12 +6,8 @@ import java.sql.SQLException;
 
 public class DatabaseWriter {
 
-    static final String URL = "jdbc:derby:savefiledb";
-    private static final String USERNAME = "anson";
-    private static final String PASSWORD = "anson";
-
     public static void updateBalance(int activeSave, int balance) {
-        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+        try (Connection connection = DriverManager.getConnection(DatabaseGUI.getURL(), DatabaseGUI.getUsername(), DatabaseGUI.getPassword())) {
             String query = "UPDATE accounts SET balance = ? WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, balance);
@@ -24,7 +20,7 @@ public class DatabaseWriter {
     }
 
     public static void updatePointsWon(int activeSave, int pointsWon) {
-        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+        try (Connection connection = DriverManager.getConnection(DatabaseGUI.getURL(), DatabaseGUI.getUsername(), DatabaseGUI.getPassword())) {
             String query = "UPDATE accounts SET pointsWon = ? WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, pointsWon);
@@ -37,7 +33,7 @@ public class DatabaseWriter {
     }
 
     public static void updatePointsLost(int activeSave, int pointsLost) {
-        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+        try (Connection connection = DriverManager.getConnection(DatabaseGUI.getURL(), DatabaseGUI.getUsername(), DatabaseGUI.getPassword())) {
             String query = "UPDATE accounts SET pointsLost = ? WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, pointsLost);
@@ -50,7 +46,7 @@ public class DatabaseWriter {
     }
 
     public static void increaseGamesPlayed(int activeSave) {
-        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+        try (Connection connection = DriverManager.getConnection(DatabaseGUI.getURL(), DatabaseGUI.getUsername(), DatabaseGUI.getPassword())) {
             String query = "UPDATE accounts SET gamesPlayed = gamesPlayed + 1 WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, activeSave);
@@ -62,7 +58,7 @@ public class DatabaseWriter {
     }
 
     public static void resetStats(int activeSave) {
-        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+        try (Connection connection = DriverManager.getConnection(DatabaseGUI.getURL(), DatabaseGUI.getUsername(), DatabaseGUI.getPassword())) {
             String query = "UPDATE accounts SET balance = 100, pointsWon = 0, pointsLost = 0, gamesPlayed = 0 WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, activeSave);
@@ -72,5 +68,4 @@ public class DatabaseWriter {
             e.printStackTrace();
         }
     }
-
 }

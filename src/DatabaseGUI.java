@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.table.TableColumn;
 
 public class DatabaseGUI extends JFrame {
 
@@ -49,6 +50,13 @@ public class DatabaseGUI extends JFrame {
 
         // Fetch and display data
         DatabaseGUIMethods.fetchEntries(table);
+        
+        // Adjust column widths
+        TableColumn idColumn = table.getColumnModel().getColumn(0);
+        TableColumn nameColumn = table.getColumnModel().getColumn(1);
+
+        idColumn.setPreferredWidth(15); // 15 pixels for ID column
+        nameColumn.setPreferredWidth(200); // Adjust the width of the name column
 
         addButton.addActionListener(new ActionListener() {
             @Override
