@@ -3,8 +3,9 @@ import java.sql.*;
 
 public class DatabaseReader {
 
+    // method to check if there is an entry matching the active save and database
     public static boolean hasEntry() {
-        boolean hasEntry = false;
+        boolean hasEntry = false; 
         Integer activeSave = Database.getActiveSave();
 
         if (activeSave != null) {
@@ -23,6 +24,7 @@ public class DatabaseReader {
         return hasEntry;
     }
 
+    // method to get the name of the activesave
     public static String getName() {
         String name = "";
         Integer activeSave = Database.getActiveSave();
@@ -42,7 +44,8 @@ public class DatabaseReader {
 
         return name;
     }
-
+    
+    //method to get the balance of the active save
     public static int readBalance() {
         int balance = 0;
         Integer activeSave = Database.getActiveSave();
@@ -68,7 +71,7 @@ public class DatabaseReader {
         return balance;
     }
 
-    //method to read the second line which is how many points the user has won
+    //method to read the amount of points won of the active save
     public static int readPointsWon() {
         int winHistory = 0;
         Integer activeSave = Database.getActiveSave();
@@ -89,6 +92,7 @@ public class DatabaseReader {
         return winHistory;
     }
 
+    // method to get the points lost of active save
     public static int readPointsLost() {
         int lossHistory = 0;
         Integer activeSave = Database.getActiveSave();
@@ -108,7 +112,8 @@ public class DatabaseReader {
 
         return lossHistory;
     }
-
+    
+    // method to read the amount of games played of active save
     public static int readGamesPlayed() {
         int gamesPlayed = 0;
         Integer activeSave = Database.getActiveSave();

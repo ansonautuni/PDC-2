@@ -7,7 +7,8 @@ public class CasinoGUI extends javax.swing.JFrame {
 
     public CasinoGUI() {
         initComponents();
-        updateCurrentActiveSaveLabel();
+        updateCurrentActiveSaveLabel(); //dertermine if there is a save selected
+        DatabaseCreator.createDatabase(); // Create the database if it doesn't exist
     }
 
     @SuppressWarnings("unchecked")
@@ -127,32 +128,33 @@ public class CasinoGUI extends javax.swing.JFrame {
 
     private void slotsMachineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slotsMachineButtonActionPerformed
         if (DatabaseReader.hasEntry()) {
-            SlotsMachineGUI.main(new String[0]);
-            dispose();
+            SlotsMachineGUI.main(new String[0]); // Launch the Slots Machine GUI
+            dispose(); // Close the main menu
         }
     }//GEN-LAST:event_slotsMachineButtonActionPerformed
 
     private void statsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statsButtonActionPerformed
-        StatsGUI.main(new String[0]);
-        dispose();
+        StatsGUI.main(new String[0]); // Launch the stats 
+        dispose(); // Close the main menu
     }//GEN-LAST:event_statsButtonActionPerformed
 
     private void exitProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitProgramActionPerformed
-        System.exit(0);
+        System.exit(0); // End the program
     }//GEN-LAST:event_exitProgramActionPerformed
 
     private void changeSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeSaveActionPerformed
-        DatabaseGUI.main(new String[0]);
-        dispose();
+        DatabaseGUI.main(new String[0]); // Launch the database GUI
+        dispose(); // Close the main menu
     }//GEN-LAST:event_changeSaveActionPerformed
 
+    //Update the JLabel at the bottom of the gui to wether there is an id selected
     private void updateCurrentActiveSaveLabel() {
         boolean hasEntry = DatabaseReader.hasEntry();
         if (hasEntry) {
             String activeSaveName = DatabaseReader.getName();
-            currentActiveSave.setText("Current Save: " + activeSaveName);
+            currentActiveSave.setText("Current Save: " + activeSaveName); // Display the current active save
         } else {
-            currentActiveSave.setText("No save selected");
+            currentActiveSave.setText("No save selected"); // Display when no save is selected
         }
     }
 
@@ -160,7 +162,7 @@ public class CasinoGUI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             CasinoGUI casinoGUI = new CasinoGUI();
             casinoGUI.setVisible(true);
-            casinoGUI.updateCurrentActiveSaveLabel();
+            casinoGUI.updateCurrentActiveSaveLabel(); // Update the current active save label
         });
     }
 

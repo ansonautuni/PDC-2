@@ -1,6 +1,19 @@
 ----------------------------------------------------------------
-Thu Jun 08 15:17:06 NZST 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0188-9902-050d-00001f03dc18 
+Thu Jun 08 21:08:42 NZST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0188-9a43-e9b2-00001f18bb70 
+on database directory D:\NetBeansProjects\CasinoProject\mydatabase with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+Loaded from file:/D:/NetBeansProjects/CasinoProject/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=20.0.1+9-29
+user.dir=D:\NetBeansProjects\CasinoProject
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Jun 08 21:08:42 NZST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance b8450018-0188-9a43-e9b2-00001f18bb70 
 on database directory D:\NetBeansProjects\CasinoProject\savefileDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
 Loaded from file:/D:/NetBeansProjects/CasinoProject/lib/derby.jar
 java.vendor=Oracle Corporation

@@ -3,12 +3,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DatabaseCreation {
+public class DatabaseCreator {
+
     private static final String URL = "jdbc:derby:savefileDB;create=true";
     private static final String USERNAME = "anson";
     private static final String PASSWORD = "anson";
 
-    public static void main(String[] args) {
+    public static void createDatabase() {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             try (Statement statement = connection.createStatement()) {
                 // Create table

@@ -5,6 +5,7 @@ import javax.swing.table.TableColumn;
 
 public class DatabaseGUI extends JFrame {
 
+    //GUI Buttons and labels
     private JTable table;
     private final JButton addButton;
     private final JButton clearButton;
@@ -12,7 +13,7 @@ public class DatabaseGUI extends JFrame {
     private JTextField activeSaveField;
     private final JButton updateSaveButton;
 
-    public static int nextId = 1; // Next ID for the new entry
+    public static int nextId = 1;
 
     public DatabaseGUI() {
         setTitle("Save File Entries");
@@ -27,13 +28,15 @@ public class DatabaseGUI extends JFrame {
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.LINE_AXIS));
 
+        // Add labels to buttons
         addButton = new JButton("Add Entry");
         clearButton = new JButton("Clear Database");
         returnButton = new JButton("Return to Main Menu");
         activeSaveField = new JTextField(10);
         updateSaveButton = new JButton("Update Active Save");
 
-        inputPanel.add(activeSaveField);
+        // Add buttons to GUI
+        inputPanel.add(activeSaveField); 
         inputPanel.add(updateSaveButton);
         inputPanel.add(Box.createHorizontalGlue());
         inputPanel.add(addButton);
@@ -42,8 +45,8 @@ public class DatabaseGUI extends JFrame {
 
         getContentPane().add(inputPanel, BorderLayout.SOUTH);
 
-        // Fetch and display data
-        Database.fetchEntries(table);
+        //Get all the entries in the database
+        Database.getEntries(table);
         
         // Adjust column widths
         TableColumn idColumn = table.getColumnModel().getColumn(0);
@@ -52,20 +55,24 @@ public class DatabaseGUI extends JFrame {
         idColumn.setPreferredWidth(15); // 15 pixels for ID column
         nameColumn.setPreferredWidth(200); // Adjust the width of the name column
 
+        // method to add an entry to database
         addButton.addActionListener((ActionEvent e) -> {
             DatabaseWriter.addEntry(nextId, table);
             nextId++;
         });
-
+        
+        // methodd to remove all entries to database
         clearButton.addActionListener((ActionEvent e) -> {
             DatabaseWriter.clearDatabase(table);
         });
-
+        
+        // method to return back to casinogui
         returnButton.addActionListener((ActionEvent e) -> {
             Database.returnToMainMenu();
             dispose();
         });
 
+        // method to change the active save file
         updateSaveButton.addActionListener((ActionEvent e) -> {
             Database.updateActiveSave(activeSaveField);
         });
@@ -73,7 +80,6 @@ public class DatabaseGUI extends JFrame {
         setVisible(true);
     }
 
-    
     public JTable getTable() {
         return table;
     }

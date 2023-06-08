@@ -10,7 +10,7 @@ public class Database {
     static final String USERNAME = "anson";
     public static Integer activeSave = null; // Active save ID
 
-    public static void fetchEntries(JTable table) {
+    public static void getEntries(JTable table) {
         DefaultTableModel model = new DefaultTableModel();
 
         try (Connection connection = DriverManager.getConnection(getURL(), getUsername(), getPassword())) {
@@ -50,6 +50,8 @@ public class Database {
         cmgui.setVisible(true);
     }
 
+    // method to change the active save to be used in the games
+    // if the active save is invalid, it prompts the user for an id
     public static void updateActiveSave(JTextField activeSaveField) {
         String activeSaveText = activeSaveField.getText();
         if (activeSaveText.isEmpty()) {

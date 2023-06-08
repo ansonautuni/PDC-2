@@ -11,6 +11,7 @@ public class SlotMachine extends Game {
         this.rolls = rolls;
     }
 
+    // generate 5 random numbers
     public void fillArray(int[] rolls, int rollMax) {
         Random random = new Random();
 
