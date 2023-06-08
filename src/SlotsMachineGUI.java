@@ -132,7 +132,10 @@ public class SlotsMachineGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RollButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RollButtonActionPerformed
-        SlotMachine.playSlotMachine(this);
+        int betAmount = getBetAmount();
+        if (betAmount > 0) {
+            SlotMachine.playSlotMachine(this);
+        }
     }//GEN-LAST:event_RollButtonActionPerformed
 
     private void BetAmountTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BetAmountTextFieldActionPerformed
@@ -159,6 +162,7 @@ public class SlotsMachineGUI extends javax.swing.JFrame {
             int betAmount = Integer.parseInt(betAmountText);
             return betAmount;
         } catch (NumberFormatException e) {
+            updateResultText("Invalid input"); // Update result label with "Invalid input"
             return 0; // Default value, modify as needed
         }
     }

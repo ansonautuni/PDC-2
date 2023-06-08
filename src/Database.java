@@ -51,7 +51,7 @@ public class Database {
     }
 
     // method to change the active save to be used in the games
-    // if the active save is invalid, it prompts the user for an id
+    // if the active save is invalid, it prompts the user for a valid id
     public static void updateActiveSave(JTextField activeSaveField) {
         String activeSaveText = activeSaveField.getText();
         if (activeSaveText.isEmpty()) {

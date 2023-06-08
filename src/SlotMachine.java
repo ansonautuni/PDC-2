@@ -4,9 +4,9 @@ import java.util.Map;
 import java.util.Random;
 
 public class SlotMachine extends Game {
-    
+
     private int[] rolls;
-    
+
     public void setRolls(int[] rolls) {
         this.rolls = rolls;
     }

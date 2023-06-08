@@ -134,8 +134,10 @@ public class CasinoGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_slotsMachineButtonActionPerformed
 
     private void statsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statsButtonActionPerformed
-        StatsGUI.main(new String[0]); // Launch the stats 
-        dispose(); // Close the main menu
+        if (DatabaseReader.hasEntry()) {
+            StatsGUI.main(new String[0]); // Launch the stats 
+            dispose(); // Close the main menu
+        }
     }//GEN-LAST:event_statsButtonActionPerformed
 
     private void exitProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitProgramActionPerformed

@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -36,7 +37,7 @@ public class DatabaseGUI extends JFrame {
         updateSaveButton = new JButton("Update Active Save");
 
         // Add buttons to GUI
-        inputPanel.add(activeSaveField); 
+        inputPanel.add(activeSaveField);
         inputPanel.add(updateSaveButton);
         inputPanel.add(Box.createHorizontalGlue());
         inputPanel.add(addButton);
@@ -47,7 +48,7 @@ public class DatabaseGUI extends JFrame {
 
         //Get all the entries in the database
         Database.getEntries(table);
-        
+
         // Adjust column widths
         TableColumn idColumn = table.getColumnModel().getColumn(0);
         TableColumn nameColumn = table.getColumnModel().getColumn(1);
@@ -60,12 +61,12 @@ public class DatabaseGUI extends JFrame {
             DatabaseWriter.addEntry(nextId, table);
             nextId++;
         });
-        
+
         // methodd to remove all entries to database
         clearButton.addActionListener((ActionEvent e) -> {
             DatabaseWriter.clearDatabase(table);
         });
-        
+
         // method to return back to casinogui
         returnButton.addActionListener((ActionEvent e) -> {
             Database.returnToMainMenu();
@@ -85,14 +86,23 @@ public class DatabaseGUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
+        java.awt.EventQueue.invokeLater(() -> {
             DatabaseGUI databaseGUI = new DatabaseGUI();
             if (Database.activeSave == null) {
                 String id = JOptionPane.showInputDialog(databaseGUI, "Enter an ID to make active:");
                 if (id != null) {
                     try {
-                        Database.activeSave = Integer.valueOf(id);
-                        JOptionPane.showMessageDialog(databaseGUI, "Active save set to ID: " + Database.activeSave);
+                        int activeSaveId = Integer.parseInt(id);
+                        Database.activeSave = activeSaveId;
+
+                        // Check if there is an entry with the specified ID
+                        boolean hasEntry = DatabaseReader.hasEntry();
+                        if (!hasEntry) {
+                            JOptionPane.showMessageDialog(databaseGUI, "Invalid ID. No entry found with ID: " + activeSaveId);
+                            Database.activeSave = null; // Reset activeSave to null
+                        } else {
+                            JOptionPane.showMessageDialog(databaseGUI, "Active save set to ID: " + Database.activeSave);
+                        }
                     } catch (NumberFormatException e) {
                         JOptionPane.showMessageDialog(databaseGUI, "Invalid ID.");
                     }
@@ -100,4 +110,5 @@ public class DatabaseGUI extends JFrame {
             }
         });
     }
+
 }
