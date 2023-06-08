@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class DatabaseGUI extends JFrame {
 
-    static final String URL = "jdbc:derby:mydatabase";
+    static final String URL = "jdbc:derby:savefiledb";
     static final String USERNAME = "anson";
     static final String PASSWORD = "anson";
 
@@ -97,6 +97,10 @@ public class DatabaseGUI extends JFrame {
 
     public static String getPassword() {
         return PASSWORD;
+    }
+    
+    public JTable getTable() {
+        return table;
     }
 
     public static void main(String[] args) {

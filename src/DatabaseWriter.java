@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseWriter {
 
-    private static final String URL = "jdbc:derby:mydatabase";
+    static final String URL = "jdbc:derby:savefiledb";
     private static final String USERNAME = "anson";
     private static final String PASSWORD = "anson";
 

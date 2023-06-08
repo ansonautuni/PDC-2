@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseCreation {
-    private static final String URL = "jdbc:derby:mydatabase;create=true";
+    private static final String URL = "jdbc:derby:savefileDB;create=true";
     private static final String USERNAME = "anson";
     private static final String PASSWORD = "anson";
 
