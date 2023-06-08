@@ -1,4 +1,3 @@
-import java.io.IOException;
 
 public class StatsGUI extends javax.swing.JFrame {
 
