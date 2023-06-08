@@ -17,7 +17,6 @@ public class DatabaseCreation {
                 System.out.println("Table created successfully.");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }

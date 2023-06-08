@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.table.TableColumn;
 
 public class DatabaseGUI extends JFrame {
@@ -16,7 +15,7 @@ public class DatabaseGUI extends JFrame {
     public static int nextId = 1; // Next ID for the new entry
 
     public DatabaseGUI() {
-        setTitle("Database Entries");
+        setTitle("Save File Entries");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 400);
         setLocationRelativeTo(null);
@@ -53,34 +52,22 @@ public class DatabaseGUI extends JFrame {
         idColumn.setPreferredWidth(15); // 15 pixels for ID column
         nameColumn.setPreferredWidth(200); // Adjust the width of the name column
 
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DatabaseWriter.addEntry(nextId, table);
-                nextId++;
-            }
+        addButton.addActionListener((ActionEvent e) -> {
+            DatabaseWriter.addEntry(nextId, table);
+            nextId++;
         });
 
-        clearButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                DatabaseWriter.clearDatabase(table);
-            }
+        clearButton.addActionListener((ActionEvent e) -> {
+            DatabaseWriter.clearDatabase(table);
         });
 
-        returnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Database.returnToMainMenu();
-                dispose();
-            }
+        returnButton.addActionListener((ActionEvent e) -> {
+            Database.returnToMainMenu();
+            dispose();
         });
 
-        updateSaveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Database.updateActiveSave(activeSaveField);
-            }
+        updateSaveButton.addActionListener((ActionEvent e) -> {
+            Database.updateActiveSave(activeSaveField);
         });
 
         setVisible(true);
@@ -95,10 +82,10 @@ public class DatabaseGUI extends JFrame {
         SwingUtilities.invokeLater(() -> {
             DatabaseGUI databaseGUI = new DatabaseGUI();
             if (Database.activeSave == null) {
-                String id = JOptionPane.showInputDialog(databaseGUI, "Enter an ID to make it active:");
+                String id = JOptionPane.showInputDialog(databaseGUI, "Enter an ID to make active:");
                 if (id != null) {
                     try {
-                        Database.activeSave = Integer.parseInt(id);
+                        Database.activeSave = Integer.valueOf(id);
                         JOptionPane.showMessageDialog(databaseGUI, "Active save set to ID: " + Database.activeSave);
                     } catch (NumberFormatException e) {
                         JOptionPane.showMessageDialog(databaseGUI, "Invalid ID.");

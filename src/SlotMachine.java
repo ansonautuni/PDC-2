@@ -31,7 +31,7 @@ public class SlotMachine extends Game {
 
     //calculate matching numbers
     public int countOccurrences(int[] arr, int matching) {
-        Map<Integer, Integer> counts = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> counts = new HashMap<>();
         int maxNum = 0;
         for (int i = 0; i < arr.length; i++) {
             int num = arr[i];

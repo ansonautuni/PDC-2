@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -40,9 +41,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
-
         table.setModel(model);
     }
 

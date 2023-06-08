@@ -155,13 +155,11 @@ public class StatsGUI extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                StatsGUI statsGUI = new StatsGUI();
-                statsGUI.setVisible(true);
-
-                statsGUI.updateMenu();
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            StatsGUI statsGUI = new StatsGUI();
+            statsGUI.setVisible(true);
+            
+            statsGUI.updateMenu();
         });
     }
 
@@ -197,11 +195,9 @@ public class StatsGUI extends javax.swing.JFrame {
             updatePointsWon();
             int pointslost = DatabaseReader.readPointsLost();
             updatePointsLost();
-            int gamesplayed = DatabaseReader.readGamesPlayed();
             updateGamesPlayed();
             updateNetEarnings(pointswon, pointslost);
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

@@ -1,7 +1,8 @@
+
 import java.sql.*;
 
 public class DatabaseReader {
-    
+
     public static boolean hasEntry() {
         boolean hasEntry = false;
         Integer activeSave = Database.getActiveSave();
@@ -17,12 +18,11 @@ public class DatabaseReader {
                     }
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
         return hasEntry;
     }
-    
+
     public static String getName() {
         String name = "";
         Integer activeSave = Database.getActiveSave();
@@ -37,7 +37,6 @@ public class DatabaseReader {
                     }
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
 
@@ -58,7 +57,6 @@ public class DatabaseReader {
                     }
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
 
@@ -85,7 +83,6 @@ public class DatabaseReader {
                     }
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
 
@@ -106,7 +103,6 @@ public class DatabaseReader {
                     }
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
 
@@ -127,10 +123,8 @@ public class DatabaseReader {
                     }
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
             }
         }
-
         return gamesPlayed;
     }
 }

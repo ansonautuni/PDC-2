@@ -171,29 +171,18 @@ public class SlotsMachineGUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SlotsMachineGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SlotsMachineGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SlotsMachineGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SlotsMachineGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                SlotsMachineGUI gui = new SlotsMachineGUI();
-
-                // Read the initial balance from the database
-                int balance = DatabaseReader.readBalance();
-
-                // Update the balance value of the GUI
-                gui.BalanceValue.setText(Integer.toString(balance));
-
-                gui.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            SlotsMachineGUI gui = new SlotsMachineGUI();
+            // Read the initial balance from the database
+            int balance1 = DatabaseReader.readBalance();
+            // Update the balance value of the GUI
+            gui.BalanceValue.setText(Integer.toString(balance1));
+            gui.setVisible(true);
         });
     }
 

@@ -18,7 +18,6 @@ public class DatabaseWriter {
                 statement.executeUpdate();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -31,7 +30,6 @@ public class DatabaseWriter {
                 statement.executeUpdate();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -44,7 +42,6 @@ public class DatabaseWriter {
                 statement.executeUpdate();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -56,7 +53,6 @@ public class DatabaseWriter {
                 statement.executeUpdate();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -68,7 +64,6 @@ public class DatabaseWriter {
                 statement.executeUpdate();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -88,7 +83,6 @@ public class DatabaseWriter {
                 Database.fetchEntries(table);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error adding entry to the database.");
         }
     }
@@ -104,7 +98,6 @@ public class DatabaseWriter {
                     Database.fetchEntries(table); // Refresh the table
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Error clearing the database.");
             }
         }

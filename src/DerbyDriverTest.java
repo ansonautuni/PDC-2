@@ -16,7 +16,6 @@ public class DerbyDriverTest {
             System.out.println("Driver: " + driver.getClass().getName());
             System.out.println("Version: " + driver.getMajorVersion() + "." + driver.getMinorVersion());
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
         }
     }
 }

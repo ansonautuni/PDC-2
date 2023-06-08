@@ -1,10 +1,18 @@
 
 public class Game {
-    
+
     private int betAmount;
     private int balance;
     private int multiplier;
     
+    public static int getBetAmount(SlotsMachineGUI gui) {
+        int betAmount = gui.getBetAmount();
+        if (betAmount <= 0) {
+            throw new IllegalArgumentException("Bet amount must be greater than zero.");
+        }
+        return betAmount;
+    }
+
     public void setBetAmount(int betAmount) {
         this.betAmount = betAmount;
     }
@@ -36,5 +44,5 @@ public class Game {
                 return balance;
         }
     }
-    
+
 }
